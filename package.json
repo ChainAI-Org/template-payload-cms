@@ -4,6 +4,9 @@
   "description": "Website template for Payload",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "pnpm": ">=8.0.0 <9.0.0"
+  },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
@@ -19,6 +22,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.3.2",
     "@payloadcms/admin-bar": "3.40.0",
     "@payloadcms/db-postgres": "^3.40.0",
     "@payloadcms/live-preview-react": "3.40.0",
@@ -35,6 +39,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@types/pg": "^8.15.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
@@ -44,6 +49,8 @@
     "next": "15.3.0",
     "next-sitemap": "^4.2.3",
     "payload": "3.40.0",
+    "pg": "^8.16.0",
+    "pg-mem": "^3.0.5",
     "prism-react-renderer": "^2.3.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -63,6 +70,7 @@
     "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.3.0",
+    "pgmock": "^1.0.3",
     "postcss": "^8.4.38",
     "prettier": "^3.4.2",
     "tailwindcss": "^3.4.3",
