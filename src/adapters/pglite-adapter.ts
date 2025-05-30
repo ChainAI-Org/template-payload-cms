@@ -11,6 +11,8 @@ let pgliteInstance: PGlite | null = null;
 export const createPgliteAdapter = async () => {
   const isProd = process.env.NODE_ENV === 'production';
   
+  console.log('🔍 PGlite adapter: Environment is', isProd ? 'production' : 'development');
+  
   // For production, use the real PostgreSQL database
   if (isProd) {
     return postgresAdapter({
@@ -22,17 +24,21 @@ export const createPgliteAdapter = async () => {
   }
   
   // For development and testing, use PGlite
+  console.log('🔄 PGlite adapter: Setting up development database with PGlite');
   try {
     // Create a custom pg Pool that works with Payload CMS
+    console.log('🛠️ PGlite adapter: Creating custom pool for PGlite');
     const customPgPool = {
       query: async (text: string, params?: any[]) => {
         // Initialize PGlite on first query if needed
         if (!pgliteInstance) {
           try {
             console.log('🧪 Initializing in-memory PostgreSQL with PGlite...');
+            console.log('📝 First query triggering initialization:', text.substring(0, 50) + (text.length > 50 ? '...' : ''));
             
             // Create in-memory PGlite instance
             pgliteInstance = new PGlite();
+            console.log('🔹 PGlite instance created, waiting for ready state...');
             
             // Wait for PGlite to be ready
             await pgliteInstance.waitReady;
@@ -46,11 +52,17 @@ export const createPgliteAdapter = async () => {
         
         try {
           // Execute the query with parameters if provided
+          console.log('🔎 PGlite executing query:', text.substring(0, 50) + (text.length > 50 ? '...' : ''));
+          
+          let result;
           if (params && params.length > 0) {
-            return await pgliteInstance.query(text, params);
+            result = await pgliteInstance.query(text, params);
           } else {
-            return await pgliteInstance.query(text);
+            result = await pgliteInstance.query(text);
           }
+          
+          console.log('✅ Query executed successfully');
+          return result;
         } catch (queryError) {
           console.error('Error executing query with PGlite:', queryError);
           throw queryError;
