@@ -11,12 +11,15 @@ importers:
       '@electric-sql/pglite':
         specifier: ^0.3.2
         version: 0.3.2
+      '@neondatabase/serverless':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@payloadcms/admin-bar':
         specifier: 3.40.0
         version: 3.40.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@payloadcms/db-postgres':
         specifier: ^3.40.0
-        version: 3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(react@19.1.0)
+        version: 3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(react@19.1.0)
       '@payloadcms/live-preview-react':
         specifier: 3.40.0
         version: 3.40.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -116,6 +119,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
+      ws:
+        specifier: ^8.18.2
+        version: 8.18.2
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -1280,6 +1286,10 @@ packages:
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
 
+  '@neondatabase/serverless@1.0.0':
+    resolution: {integrity: sha512-XWmEeWpBXIoksZSDN74kftfTnXFEGZ3iX8jbANWBc+ag6dsiQuvuR4LgB0WdCOKMb5AQgjqgufc0TgAsZubUYw==}
+    engines: {node: '>=19.0.0'}
+
   '@next/env@13.5.11':
     resolution: {integrity: sha512-fbb2C7HChgM7CemdCY+y3N1n8pcTKdqtQLbC7/EQtPdLvlMUT9JX/dBYl8MMZAtYG4uVMyPFHXckb68q/NRwqg==}
 
@@ -2026,6 +2036,9 @@ packages:
 
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
+
+  '@types/node@22.15.29':
+    resolution: {integrity: sha512-LNdjOkUDlU1RZb8e1kOIUpN1qQUlzGkEtbVNo53vbrwDg5om6oduhm4SiUaPW5ASTXhAiP0jInWG8Qx9fVlOeQ==}
 
   '@types/node@22.5.4':
     resolution: {integrity: sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==}
@@ -4779,6 +4792,9 @@ packages:
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   unfetch@4.2.0:
     resolution: {integrity: sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==}
 
@@ -6379,6 +6395,11 @@ snapshots:
   '@neon-rs/load@0.0.4':
     optional: true
 
+  '@neondatabase/serverless@1.0.0':
+    dependencies:
+      '@types/node': 22.15.29
+      '@types/pg': 8.15.2
+
   '@next/env@13.5.11': {}
 
   '@next/env@15.3.0': {}
@@ -6432,13 +6453,13 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@payloadcms/db-postgres@3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(react@19.1.0)':
+  '@payloadcms/db-postgres@3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(react@19.1.0)':
     dependencies:
-      '@payloadcms/drizzle': 3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/pg@8.10.2)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(pg@8.11.3)(react@19.1.0)
+      '@payloadcms/drizzle': 3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.10.2)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(pg@8.11.3)(react@19.1.0)
       '@types/pg': 8.10.2
       console-table-printer: 2.12.1
       drizzle-kit: 0.28.0
-      drizzle-orm: 0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0)
+      drizzle-orm: 0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0)
       payload: 3.40.0(graphql@16.11.0)(typescript@5.7.3)
       pg: 8.11.3
       prompts: 2.4.2
@@ -6475,11 +6496,11 @@ snapshots:
       - sqlite3
       - supports-color
 
-  '@payloadcms/drizzle@3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/pg@8.10.2)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(pg@8.11.3)(react@19.1.0)':
+  '@payloadcms/drizzle@3.40.0(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.10.2)(@types/react@19.1.0)(payload@3.40.0(graphql@16.11.0)(typescript@5.7.3))(pg@8.11.3)(react@19.1.0)':
     dependencies:
       console-table-printer: 2.12.1
       dequal: 2.0.3
-      drizzle-orm: 0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0)
+      drizzle-orm: 0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0)
       payload: 3.40.0(graphql@16.11.0)(typescript@5.7.3)
       prompts: 2.4.2
       to-snake-case: 1.0.0
@@ -7364,6 +7385,10 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
+  '@types/node@22.15.29':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/node@22.5.4':
     dependencies:
       undici-types: 6.19.8
@@ -8041,10 +8066,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0):
+  drizzle-orm@0.36.1(@electric-sql/pglite@0.3.2)(@libsql/client@0.14.0)(@neondatabase/serverless@1.0.0)(@types/pg@8.10.2)(@types/react@19.1.0)(pg@8.11.3)(react@19.1.0):
     optionalDependencies:
       '@electric-sql/pglite': 0.3.2
       '@libsql/client': 0.14.0
+      '@neondatabase/serverless': 1.0.0
       '@types/pg': 8.10.2
       '@types/react': 19.1.0
       pg: 8.11.3
@@ -10547,6 +10573,8 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   undici-types@6.19.8: {}
+
+  undici-types@6.21.0: {}
 
   unfetch@4.2.0: {}
 

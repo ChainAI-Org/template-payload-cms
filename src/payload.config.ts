@@ -15,13 +15,15 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
-import { createPgliteAdapter } from './adapters/pglite-adapter'
+import { createNeonAdapter } from './adapters/neon-adapter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-// Create the database adapter based on environment
-const dbAdapter = await createPgliteAdapter();
+// Choose which database adapter to use based on environment
+// For local development: PGlite (in-memory)
+// For production: Neon PostgreSQL with WebSocket support
+const dbAdapter = await createNeonAdapter();
 
 export default buildConfig({
   admin: {
