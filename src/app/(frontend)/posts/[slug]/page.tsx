@@ -42,7 +42,13 @@ type Args = {
 }
 
 export default async function Post({ params: paramsPromise }: Args) {
-  const { isEnabled: draft } = await draftMode()
+  const draft = await (async () => {
+    try {
+      return (await draftMode()).isEnabled;
+    } catch {
+      return false;
+    }
+  })()
   const { slug = '' } = await paramsPromise
   const url = '/posts/' + slug
   const post = await queryPostBySlug({ slug })
@@ -83,7 +89,13 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
-  const { isEnabled: draft } = await draftMode()
+  const draft = await (async () => {
+    try {
+      return (await draftMode()).isEnabled;
+    } catch {
+      return false;
+    }
+  })()
 
   const payload = await getPayload({ config: configPromise })
 

@@ -44,7 +44,13 @@ type Args = {
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
-  const { isEnabled: draft } = await draftMode()
+  const draft = await (async () => {
+    try {
+      return (await draftMode()).isEnabled;
+    } catch {
+      return false;
+    }
+  })()
   const { slug = 'home' } = await paramsPromise
   const url = '/' + slug
 
@@ -89,7 +95,13 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-  const { isEnabled: draft } = await draftMode()
+  const draft = await (async () => {
+    try {
+      return (await draftMode()).isEnabled;
+    } catch {
+      return false;
+    }
+  })()
 
   const payload = await getPayload({ config: configPromise })
 

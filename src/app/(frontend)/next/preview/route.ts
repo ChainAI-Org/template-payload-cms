@@ -48,10 +48,20 @@ export async function GET(
     return new Response('You are not allowed to preview this page', { status: 403 })
   }
 
-  const draft = await draftMode()
+  let draft;
+  try {
+    draft = await draftMode();
+  } catch (error) {
+    console.error('Error accessing draft mode:', error);
+    return new Response('Error accessing preview mode', { status: 500 });
+  }
 
   if (!user) {
-    draft.disable()
+    try {
+      draft.disable()
+    } catch (error) {
+      console.error('Error disabling draft mode:', error)
+    }
     return new Response('You are not allowed to preview this page', { status: 403 })
   }
 
